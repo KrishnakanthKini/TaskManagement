@@ -1,0 +1,19 @@
+.mat-toolbar {
+  display: flex;
+  justify-content: left;
+  align-items: center; /* Align items vertically */
+}
+
+.space {
+  padding: 0 20%;
+}
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .mat-toolbar {
+    flex-direction: column; /* Stack items vertically */
+    height: 15%;
+  }
+  .space {
+    padding: 5% 0;
+  }
+}

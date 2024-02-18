@@ -1,0 +1,45 @@
+<!-- task-read.component.html -->
+
+<h2>Task Details</h2>
+
+<table class="task-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th>Update Task</th>
+      <th>Delete Task</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>
+        <a [routerLink]="'/tasks/readDetails/' + task.id">{{ task.title }}</a>
+      </td>
+      <td>{{ task.dueDate | date }}</td>
+      <td>
+        <button (click)="onUpdate(task.id)">
+          <span><mat-icon>edit</mat-icon></span>
+        </button>
+      </td>
+      <td>
+        <button class="delete" (click)="onDelete(task.id)">
+          <span><mat-icon>delete</mat-icon></span>
+        </button>
+      </td>
+      <td>
+        <button
+          class="complete"
+          *ngIf="!task.completed"
+          (click)="markAsCompleted(task.id)"
+        >
+          <mat-icon>crop_square</mat-icon>
+        </button>
+        <button class="complete" *ngIf="task.completed">
+          <mat-icon>check-square</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

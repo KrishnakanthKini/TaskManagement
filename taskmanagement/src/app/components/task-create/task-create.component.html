@@ -1,0 +1,62 @@
+<!-- task-create.component.html -->
+<div class="container">
+  <form #taskForm="ngForm" (ngSubmit)="taskForm.form.valid && onSubmit()">
+    <div>
+      <label>Title:</label>
+      <input
+        type="text"
+        [(ngModel)]="task.title"
+        name="title"
+        #title="ngModel"
+        required
+        minlength="5"
+      />
+      <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <small class="alert" *ngIf="title.errors?.['required']"
+          >Please Add The Title</small
+        >
+        <small
+          class="alert"
+          *ngIf="title.errors?.[
+        'minlength']"
+          >Title must be at least 5 characters long.</small
+        >
+      </div>
+    </div>
+    <div>
+      <label>Description:</label>
+      <textarea
+        [(ngModel)]="task.description"
+        name="description"
+        required
+        #description="ngModel"
+      ></textarea>
+      <div
+        *ngIf="
+          description.invalid && (description.dirty || description.touched)
+        "
+      >
+        <small class="alert" *ngIf="description.errors?.['required']"
+          >Please Add Description
+        </small>
+      </div>
+    </div>
+    <div>
+      <label>Due Date:</label>
+      <input
+        type="date"
+        [(ngModel)]="task.dueDate"
+        name="dueDate"
+        #dueDate="ngModel"
+        required
+      />
+      <div *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)">
+        <small class="alert" *ngIf="dueDate.errors?.['required']"
+          >Please Add Due Date</small
+        >
+      </div>
+    </div>
+
+    <button type="submit">Create Task</button>
+  </form>
+</div>
